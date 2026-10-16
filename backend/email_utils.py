@@ -1,14 +1,25 @@
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-SMTP_SERVER = "smtp.gmail.com"
-SMTP_PORT = 587
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-SENDER_EMAIL = "kumarsanket.jsr82@gmail.com"
-SENDER_PASSWORD = "mcuwnydmxwdhbino"
+SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+
+SENDER_EMAIL = os.getenv("SENDER_EMAIL", "")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD", "")
 
 def send_ticket_email(to_email, ticket_text, ticket):
+    if not SENDER_EMAIL or not SENDER_PASSWORD:
+        print("⚠️ SENDER_EMAIL or SENDER_PASSWORD not configured. Skipping email delivery.")
+        return
+
     subject = f"[SupportIQ] Ticket Received – {ticket['category']}"
 
     feedback_helpful = (
