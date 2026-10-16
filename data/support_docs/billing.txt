@@ -1,0 +1,4 @@
+Refunds are processed within 5 to 7 business days after confirmation.
+If a customer is charged twice, invoice history must be verified before initiating a refund.
+Subscription cancellations are effective at the end of the billing cycle.
+Billing issues where money is already deducted should be treated as high priority.

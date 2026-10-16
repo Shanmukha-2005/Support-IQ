@@ -1,0 +1,6 @@
+Billing refunds are processed within 5–7 business days.
+If a customer is charged twice, verify invoice history and initiate refund.
+Password resets require email verification.
+If login issues persist, clear browser cache and try again.
+Technical issues like crashes or downtime should be escalated to engineering.
+Feature requests are reviewed quarterly by the product team.

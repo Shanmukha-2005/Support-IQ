@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+streamlit
+scikit-learn
+faiss-cpu
+sentence-transformers
+transformers
+torch
+accelerate

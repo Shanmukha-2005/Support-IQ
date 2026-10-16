@@ -1,0 +1,4 @@
+Users can reset their password using the Forgot Password option.
+Accounts are locked after five unsuccessful login attempts.
+Locked accounts are automatically unlocked after 30 minutes.
+If password reset emails are not received, users should check their spam folder.

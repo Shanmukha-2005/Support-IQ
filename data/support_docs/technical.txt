@@ -1,0 +1,4 @@
+System downtime may occur during scheduled maintenance windows.
+Application crashes can often be resolved by restarting and clearing cache.
+Users should ensure they are running the latest application version.
+Technical issues affecting multiple users must be escalated to engineering immediately.

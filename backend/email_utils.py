@@ -1,0 +1,60 @@
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 587
+
+SENDER_EMAIL = "kumarsanket.jsr82@gmail.com"
+SENDER_PASSWORD = "mcuwnydmxwdhbino"
+
+def send_ticket_email(to_email, ticket_text, ticket):
+    subject = f"[SupportIQ] Ticket Received – {ticket['category']}"
+
+    feedback_helpful = (
+        f"http://127.0.0.1:8000/feedback"
+        f"?ticket_id={ticket['ticket_id']}&response=helpful"
+    )
+    feedback_not = (
+        f"http://127.0.0.1:8000/feedback"
+        f"?ticket_id={ticket['ticket_id']}&response=not_helpful"
+    )
+
+    body = f"""
+Hello,
+
+Your support ticket has been received successfully.
+
+📌 Category: {ticket['category']}
+🚦 Priority: {ticket['priority']}
+👥 Routed To: {ticket['route_to']}
+⏱ Urgency Score: {ticket['urgency_score']}/100
+
+📝 Issue:
+{ticket_text}
+
+💡 Suggested Response:
+{ticket.get('suggested_response', 'Our team will get back to you shortly.')}
+
+-----------------------------------
+Was this response helpful?
+
+👍 Yes: {feedback_helpful}
+👎 No: {feedback_not}
+-----------------------------------
+
+Regards,
+SupportIQ Team
+"""
+
+    msg = MIMEMultipart()
+    msg["From"] = SENDER_EMAIL
+    msg["To"] = to_email
+    msg["Subject"] = subject
+    msg.attach(MIMEText(body, "plain"))
+
+    server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+    server.starttls()
+    server.login(SENDER_EMAIL, SENDER_PASSWORD)
+    server.send_message(msg)
+    server.quit()
